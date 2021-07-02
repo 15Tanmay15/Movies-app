@@ -15,9 +15,11 @@ class Navbar extends React.Component {
     this.props.dispatch(addMovieToList(movie));
   }
 
-handleSearch = () => {
-  const { searchText } = this.state;
+handleSearch = (searchText) => {
+  // const { searchText } = this.state;
+  // if(searchText!=''){
   this.props.dispatch(handleMovieSearch(searchText));
+  // }
 }
 
 
@@ -31,12 +33,13 @@ handleChange = (e) => {
     return(
       <div className="nav">
       <div className="search-container">
-        <input onChange={this.handleChange} />
+        {/* <input onChange={this.handleChange}/> */}
+        {<input onChange={(e)=>{this.handleSearch(e.target.value)}}/>}
         <button id="search-btn" onClick={this.handleSearch}>
-          Search
+        <i class="fas fa-search"></i>
         </button>
-
-        {showSearchResults && (
+        {/* {console.log(movie)} */}
+        {showSearchResults && movie.Response != 'False' && (
           <div className="search-results">
             <div className="search-result">
               <img src={movie.Poster} alt="search-pic" />
